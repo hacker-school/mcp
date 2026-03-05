@@ -113,7 +113,7 @@ public class InitializeConnectionResponse
 public class GitConnectRequest
 {
     [JsonPropertyName("gitProviderDetails")]
-    public GitProviderDetails? GitProviderDetails { get; set; }
+    public GitProviderDetails GitProviderDetails { get; set; } = new();
 
     [JsonPropertyName("myGitCredentials")]
     public GitCredentials? MyGitCredentials { get; set; }
@@ -161,7 +161,7 @@ public class GitUpdateOptions
 public class GitCommitRequest
 {
     [JsonPropertyName("mode")]
-    public string? Mode { get; set; }
+    public string? Mode { get; set; } = "All";
 
     [JsonPropertyName("workspaceHead")]
     public string? WorkspaceHead { get; set; }

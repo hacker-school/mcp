@@ -85,6 +85,11 @@ public sealed class GitUpdateFromGitCommand(
             {
                 RemoteCommitHash = options.RemoteCommitHash,
                 WorkspaceHead = options.WorkspaceHead,
+                ConflictResolution = new ConflictResolution
+                {
+                    ConflictResolutionType = "Workspace",
+                    ConflictResolutionPolicy = "PreferRemote"
+                },
                 Options = new GitUpdateOptions
                 {
                     AllowOverrideItems = options.AllowOverride

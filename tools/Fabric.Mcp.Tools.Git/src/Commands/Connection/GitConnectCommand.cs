@@ -43,6 +43,12 @@ public sealed class GitConnectCommand(
         command.Options.Add(GitOptionDefinitions.Workspace.AsOptional());
         command.Options.Add(GitOptionDefinitions.WorkspaceId.AsOptional());
         command.Options.Add(GitOptionDefinitions.ConnectionId.AsOptional());
+        command.Options.Add(GitOptionDefinitions.OrganizationName.AsOptional());
+        command.Options.Add(GitOptionDefinitions.ProjectName.AsOptional());
+        command.Options.Add(GitOptionDefinitions.RepositoryName.AsOptional());
+        command.Options.Add(GitOptionDefinitions.BranchName.AsOptional());
+        command.Options.Add(GitOptionDefinitions.DirectoryName.AsOptional());
+        command.Options.Add(GitOptionDefinitions.GitProviderType.AsOptional());
     }
 
     protected override GitConnectOptions BindOptions(ParseResult parseResult)
@@ -54,6 +60,12 @@ public sealed class GitConnectCommand(
             ? workspaceId!
             : workspaceName ?? string.Empty;
         options.ConnectionId = parseResult.GetValueOrDefault<string>(GitOptionDefinitions.ConnectionIdName);
+        options.OrganizationName = parseResult.GetValueOrDefault<string>(GitOptionDefinitions.OrganizationNameName);
+        options.ProjectName = parseResult.GetValueOrDefault<string>(GitOptionDefinitions.ProjectNameName);
+        options.RepositoryName = parseResult.GetValueOrDefault<string>(GitOptionDefinitions.RepositoryNameName);
+        options.BranchName = parseResult.GetValueOrDefault<string>(GitOptionDefinitions.BranchNameName);
+        options.DirectoryName = parseResult.GetValueOrDefault<string>(GitOptionDefinitions.DirectoryNameName);
+        options.GitProviderType = parseResult.GetValueOrDefault<string>(GitOptionDefinitions.GitProviderTypeName);
         return options;
     }
 
@@ -78,6 +90,22 @@ public sealed class GitConnectCommand(
             }
 
             var request = new GitConnectRequest();
+
+            if (!string.IsNullOrWhiteSpace(options.OrganizationName) ||
+                !string.IsNullOrWhiteSpace(options.ProjectName) ||
+                !string.IsNullOrWhiteSpace(options.RepositoryName) ||
+                !string.IsNullOrWhiteSpace(options.BranchName))
+            {
+                request.GitProviderDetails = new GitProviderDetails
+                {
+                    OrganizationName = options.OrganizationName,
+                    ProjectName = options.ProjectName,
+                    RepositoryName = options.RepositoryName,
+                    BranchName = options.BranchName,
+                    DirectoryName = options.DirectoryName ?? "/",
+                    GitProviderType = options.GitProviderType ?? "AzureDevOps"
+                };
+            }
 
             if (!string.IsNullOrWhiteSpace(options.ConnectionId))
             {
@@ -114,4 +142,10 @@ public sealed class GitConnectOptions : GlobalOptions
 {
     public string WorkspaceId { get; set; } = string.Empty;
     public string? ConnectionId { get; set; }
+    public string? OrganizationName { get; set; }
+    public string? ProjectName { get; set; }
+    public string? RepositoryName { get; set; }
+    public string? BranchName { get; set; }
+    public string? DirectoryName { get; set; }
+    public string? GitProviderType { get; set; }
 }

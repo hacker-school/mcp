@@ -59,4 +59,47 @@ public static class GitOptionDefinitions
         Description = "The connection ID for Git credentials.",
         Required = false
     };
+
+    // Git provider detail options
+    public const string OrganizationNameName = "organization-name";
+    public static readonly Option<string> OrganizationName = new($"--{OrganizationNameName}")
+    {
+        Description = "The Git organization name (e.g. Azure DevOps organization).",
+        Required = false
+    };
+
+    public const string ProjectNameName = "project-name";
+    public static readonly Option<string> ProjectName = new($"--{ProjectNameName}")
+    {
+        Description = "The Git project name.",
+        Required = false
+    };
+
+    public const string RepositoryNameName = "repository-name";
+    public static readonly Option<string> RepositoryName = new($"--{RepositoryNameName}")
+    {
+        Description = "The Git repository name.",
+        Required = false
+    };
+
+    public const string BranchNameName = "branch-name";
+    public static readonly Option<string> BranchName = new($"--{BranchNameName}")
+    {
+        Description = "The Git branch name to connect to.",
+        Required = false
+    };
+
+    public const string DirectoryNameName = "directory-name";
+    public static readonly Option<string> DirectoryName = new($"--{DirectoryNameName}")
+    {
+        Description = "The directory in the Git repository (defaults to '/').",
+        Required = false
+    };
+
+    public const string GitProviderTypeName = "git-provider-type";
+    public static readonly Option<string> GitProviderType = new($"--{GitProviderTypeName}")
+    {
+        Description = "The Git provider type (defaults to 'AzureDevOps').",
+        Required = false
+    };
 }

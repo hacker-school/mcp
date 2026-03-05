@@ -10,6 +10,7 @@ namespace Fabric.Mcp.Tools.Git.Models;
 
 [JsonSerializable(typeof(GitStatus))]
 [JsonSerializable(typeof(GitChange))]
+[JsonSerializable(typeof(List<GitChange>))]
 [JsonSerializable(typeof(GitItemMetadata))]
 [JsonSerializable(typeof(GitItemIdentifier))]
 [JsonSerializable(typeof(GitConnection))]

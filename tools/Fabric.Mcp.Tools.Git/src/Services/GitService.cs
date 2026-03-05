@@ -45,7 +45,7 @@ public class GitService(HttpClient httpClient, TokenCredential? credential = nul
     {
         var url = $"{FabricEndpoints.FabricApiBaseUrl}/workspaces/{workspaceId}/git/connect";
         var jsonContent = JsonSerializer.Serialize(request, GitJsonContext.Default.GitConnectRequest);
-        await SendFabricApiRequestAsync(HttpMethod.Post, url, jsonContent, cancellationToken);
+        using var _ = await SendFabricApiRequestAsync(HttpMethod.Post, url, jsonContent, cancellationToken);
     }
 
     public async Task DisconnectAsync(
@@ -53,7 +53,7 @@ public class GitService(HttpClient httpClient, TokenCredential? credential = nul
         CancellationToken cancellationToken = default)
     {
         var url = $"{FabricEndpoints.FabricApiBaseUrl}/workspaces/{workspaceId}/git/disconnect";
-        await SendFabricApiRequestAsync(HttpMethod.Post, url, cancellationToken: cancellationToken);
+        using var _ = await SendFabricApiRequestAsync(HttpMethod.Post, url, cancellationToken: cancellationToken);
     }
 
     public async Task<InitializeConnectionResponse> InitializeConnectionAsync(
@@ -167,13 +167,13 @@ public class GitService(HttpClient httpClient, TokenCredential? credential = nul
 
             var content = await response.Content.ReadAsStringAsync(cancellationToken);
 
-            if (content.Contains("\"Succeeded\"", StringComparison.OrdinalIgnoreCase) ||
-                content.Contains("\"Completed\"", StringComparison.OrdinalIgnoreCase))
+            if (content.Contains("\"status\":\"Succeeded\"", StringComparison.OrdinalIgnoreCase) ||
+                content.Contains("\"status\":\"Completed\"", StringComparison.OrdinalIgnoreCase))
             {
                 return;
             }
 
-            if (content.Contains("\"Failed\"", StringComparison.OrdinalIgnoreCase))
+            if (content.Contains("\"status\":\"Failed\"", StringComparison.OrdinalIgnoreCase))
             {
                 throw new InvalidOperationException(
                     $"Long-running operation failed. Response: {content}");
