@@ -49,13 +49,13 @@ public sealed class GitCommitCommand(
     protected override GitCommitOptions BindOptions(ParseResult parseResult)
     {
         var options = base.BindOptions(parseResult);
-        var workspaceId = parseResult.GetValueOrDefault<string>(GitOptionDefinitions.WorkspaceIdName);
-        var workspaceName = parseResult.GetValueOrDefault<string>(GitOptionDefinitions.WorkspaceName);
+        var workspaceId = parseResult.GetValueOrDefault<string>(GitOptionDefinitions.WorkspaceId.Name);
+        var workspaceName = parseResult.GetValueOrDefault<string>(GitOptionDefinitions.Workspace.Name);
         options.WorkspaceId = !string.IsNullOrWhiteSpace(workspaceId)
             ? workspaceId!
             : workspaceName ?? string.Empty;
-        options.CommitMessage = parseResult.GetValueOrDefault<string>(GitOptionDefinitions.CommitMessageName);
-        options.WorkspaceHead = parseResult.GetValueOrDefault<string>(GitOptionDefinitions.WorkspaceHeadName);
+        options.CommitMessage = parseResult.GetValueOrDefault<string>(GitOptionDefinitions.CommitMessage.Name);
+        options.WorkspaceHead = parseResult.GetValueOrDefault<string>(GitOptionDefinitions.WorkspaceHead.Name);
         return options;
     }
 

@@ -47,8 +47,8 @@ public sealed class GitStatusCommand(
     protected override GitStatusOptions BindOptions(ParseResult parseResult)
     {
         var options = base.BindOptions(parseResult);
-        var workspaceId = parseResult.GetValueOrDefault<string>(GitOptionDefinitions.WorkspaceIdName);
-        var workspaceName = parseResult.GetValueOrDefault<string>(GitOptionDefinitions.WorkspaceName);
+        var workspaceId = parseResult.GetValueOrDefault<string>(GitOptionDefinitions.WorkspaceId.Name);
+        var workspaceName = parseResult.GetValueOrDefault<string>(GitOptionDefinitions.Workspace.Name);
         options.WorkspaceId = !string.IsNullOrWhiteSpace(workspaceId)
             ? workspaceId!
             : workspaceName ?? string.Empty;

@@ -49,14 +49,14 @@ public sealed class PipelineRunCommand(
     protected override PipelineRunOptions BindOptions(ParseResult parseResult)
     {
         var options = base.BindOptions(parseResult);
-        var workspaceId = parseResult.GetValueOrDefault<string>(PipelineOptionDefinitions.WorkspaceIdName);
-        var workspaceName = parseResult.GetValueOrDefault<string>(PipelineOptionDefinitions.WorkspaceName);
+        var workspaceId = parseResult.GetValueOrDefault<string>(PipelineOptionDefinitions.WorkspaceId.Name);
+        var workspaceName = parseResult.GetValueOrDefault<string>(PipelineOptionDefinitions.Workspace.Name);
         options.WorkspaceId = !string.IsNullOrWhiteSpace(workspaceId)
             ? workspaceId!
             : workspaceName ?? string.Empty;
 
-        var itemId = parseResult.GetValueOrDefault<string>(PipelineOptionDefinitions.ItemIdName);
-        var itemName = parseResult.GetValueOrDefault<string>(PipelineOptionDefinitions.ItemName);
+        var itemId = parseResult.GetValueOrDefault<string>(PipelineOptionDefinitions.ItemId.Name);
+        var itemName = parseResult.GetValueOrDefault<string>(PipelineOptionDefinitions.Item.Name);
         options.ItemId = !string.IsNullOrWhiteSpace(itemId)
             ? itemId!
             : itemName ?? string.Empty;

@@ -54,18 +54,18 @@ public sealed class GitConnectCommand(
     protected override GitConnectOptions BindOptions(ParseResult parseResult)
     {
         var options = base.BindOptions(parseResult);
-        var workspaceId = parseResult.GetValueOrDefault<string>(GitOptionDefinitions.WorkspaceIdName);
-        var workspaceName = parseResult.GetValueOrDefault<string>(GitOptionDefinitions.WorkspaceName);
+        var workspaceId = parseResult.GetValueOrDefault<string>(GitOptionDefinitions.WorkspaceId.Name);
+        var workspaceName = parseResult.GetValueOrDefault<string>(GitOptionDefinitions.Workspace.Name);
         options.WorkspaceId = !string.IsNullOrWhiteSpace(workspaceId)
             ? workspaceId!
             : workspaceName ?? string.Empty;
-        options.ConnectionId = parseResult.GetValueOrDefault<string>(GitOptionDefinitions.ConnectionIdName);
-        options.OrganizationName = parseResult.GetValueOrDefault<string>(GitOptionDefinitions.OrganizationNameName);
-        options.ProjectName = parseResult.GetValueOrDefault<string>(GitOptionDefinitions.ProjectNameName);
-        options.RepositoryName = parseResult.GetValueOrDefault<string>(GitOptionDefinitions.RepositoryNameName);
-        options.BranchName = parseResult.GetValueOrDefault<string>(GitOptionDefinitions.BranchNameName);
-        options.DirectoryName = parseResult.GetValueOrDefault<string>(GitOptionDefinitions.DirectoryNameName);
-        options.GitProviderType = parseResult.GetValueOrDefault<string>(GitOptionDefinitions.GitProviderTypeName);
+        options.ConnectionId = parseResult.GetValueOrDefault<string>(GitOptionDefinitions.ConnectionId.Name);
+        options.OrganizationName = parseResult.GetValueOrDefault<string>(GitOptionDefinitions.OrganizationName.Name);
+        options.ProjectName = parseResult.GetValueOrDefault<string>(GitOptionDefinitions.ProjectName.Name);
+        options.RepositoryName = parseResult.GetValueOrDefault<string>(GitOptionDefinitions.RepositoryName.Name);
+        options.BranchName = parseResult.GetValueOrDefault<string>(GitOptionDefinitions.BranchName.Name);
+        options.DirectoryName = parseResult.GetValueOrDefault<string>(GitOptionDefinitions.DirectoryName.Name);
+        options.GitProviderType = parseResult.GetValueOrDefault<string>(GitOptionDefinitions.GitProviderType.Name);
         return options;
     }
 

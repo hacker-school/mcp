@@ -50,14 +50,14 @@ public sealed class GitUpdateFromGitCommand(
     protected override GitUpdateFromGitOptions BindOptions(ParseResult parseResult)
     {
         var options = base.BindOptions(parseResult);
-        var workspaceId = parseResult.GetValueOrDefault<string>(GitOptionDefinitions.WorkspaceIdName);
-        var workspaceName = parseResult.GetValueOrDefault<string>(GitOptionDefinitions.WorkspaceName);
+        var workspaceId = parseResult.GetValueOrDefault<string>(GitOptionDefinitions.WorkspaceId.Name);
+        var workspaceName = parseResult.GetValueOrDefault<string>(GitOptionDefinitions.Workspace.Name);
         options.WorkspaceId = !string.IsNullOrWhiteSpace(workspaceId)
             ? workspaceId!
             : workspaceName ?? string.Empty;
-        options.RemoteCommitHash = parseResult.GetValueOrDefault<string>(GitOptionDefinitions.RemoteCommitHashName);
-        options.WorkspaceHead = parseResult.GetValueOrDefault<string>(GitOptionDefinitions.WorkspaceHeadName);
-        options.AllowOverride = parseResult.GetValueOrDefault<bool>(GitOptionDefinitions.AllowOverrideName);
+        options.RemoteCommitHash = parseResult.GetValueOrDefault<string>(GitOptionDefinitions.RemoteCommitHash.Name);
+        options.WorkspaceHead = parseResult.GetValueOrDefault<string>(GitOptionDefinitions.WorkspaceHead.Name);
+        options.AllowOverride = parseResult.GetValueOrDefault<bool>(GitOptionDefinitions.AllowOverride.Name);
         return options;
     }
 
