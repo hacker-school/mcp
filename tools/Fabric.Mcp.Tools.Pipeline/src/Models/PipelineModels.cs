@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace Fabric.Mcp.Tools.Pipeline.Models;
@@ -38,7 +39,7 @@ public class JobInstance
     public string? EndTimeUtc { get; set; }
 
     [JsonPropertyName("failureReason")]
-    public string? FailureReason { get; set; }
+    public JsonElement? FailureReason { get; set; }
 }
 
 public static class FabricEndpoints
