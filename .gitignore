@@ -30,3 +30,7 @@ eng/tools/ToolDescriptionEvaluator/prompts.json
 eng/tools/ToolDescriptionEvaluator/results.md
 eng/tools/ToolDescriptionEvaluator/tools.json
 deploy-log.txt
+
+# Claude agent harness (local only, never commit)
+init.sh
+claude-progress.md

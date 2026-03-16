@@ -6,7 +6,15 @@
       "version": "0.3.5",
       "commands": [
         "mcpb"
-      ]
+      ],
+      "rollForward": false
+    },
+    "azure.mcp": {
+      "version": "1.0.1",
+      "commands": [
+        "azmcp"
+      ],
+      "rollForward": false
     }
   }
 }
