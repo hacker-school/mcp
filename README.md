@@ -1,3 +1,5 @@
+> Archiviert am 2026-11-15 – Fork von microsoft/mcp, nicht weitergeführt.
+
 # 🌟 Microsoft MCP Servers
 
 
